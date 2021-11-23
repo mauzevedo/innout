@@ -20,7 +20,7 @@ class WorkingHours extends Model {
             $registry = new WorkingHours([
                 'user_id' => $userId,
                 'work_date' => $workDate,
-                'work_time' => 0
+                'worked_time' => 0
             ]);
         }
         return $registry;
@@ -98,7 +98,7 @@ class WorkingHours extends Model {
     }
 
     function getBalance() {
-        if(!$this->time1 && !isPastWorkday($this->work_date)) return '-';
+        if(!$this->time1 && !isPastWorkday($this->work_date)) return '';
         if($this->worked_time == DAILY_TIME) return '-';
 
         $balance = $this->worked_time - DAILY_TIME;
